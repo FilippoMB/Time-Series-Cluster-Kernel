@@ -4,7 +4,7 @@ The Time Series Cluster Kernel (TCK) is a kernel similarity for multivariate tim
 
 
 <p align="center">
-<img src="docs/tck_scheme.png" style="width: 18cm">
+<img src="https://raw.githubusercontent.com/FilippoMB/Time-Series-Cluster-Kernel/master/docs/tck_scheme.png" style="width: 18cm">
 <br>
 
 TCK is based on an ensemble of Gaussian Mixture Models for time series that use informative Bayesian priors robust to missing values. The similarity between two time series is proportional to the number of times the two time series are assigned to the same mixtures.
