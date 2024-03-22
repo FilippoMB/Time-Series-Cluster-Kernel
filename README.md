@@ -50,7 +50,7 @@ python examples/clustering.py
 
 The following notebooks illustrate more advanced use-cases.
 
-- Perform time series dimensionality reduction, cluster analysis, and visualize the results: [view](https://nbviewer.org/github/FilippoMB/Time-Series-Cluster-Kernel/blob/main/notebooks/clustering.ipynb) or [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/FilippoMB/Time-Series-Cluster-Kernel/blob/main/notebooks/clustering.ipynb)
+- Perform time series dimensionality reduction, cluster analysis, and visualize the results: [view](https://nbviewer.org/github/FilippoMB/Time-Series-Cluster-Kernel/blob/main/notebooks/clustering.ipynb) or [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1hLF0SfiZZ13zhik0vAjWfvs__GJvV9c4?usp=sharing)
 
 ## Running on Windows
 
