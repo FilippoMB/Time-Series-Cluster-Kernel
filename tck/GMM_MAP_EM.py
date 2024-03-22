@@ -1,8 +1,8 @@
 import numpy as np
 from scipy.stats import norm
 from numpy.random import rand, randint
+from .GMMposterior import GMMposterior
 
-from GMMposterior import GMMposterior
 
 def GMM_MAP_EM(X, **kwargs):
     """
@@ -16,6 +16,7 @@ def GMM_MAP_EM(X, **kwargs):
     tuple: Q, mu, s2, theta, dim_idx, time_idx
     """
     N, T, V = X.shape
+
     # Handling optional parameters with default values
     minN = kwargs.get('minN', 0.8)
     minV = kwargs.get('minV', 1 if V == 1 else 2)
@@ -38,17 +39,12 @@ def GMM_MAP_EM(X, **kwargs):
         sN = round(0.9*N)
 
     sub_idx = np.sort(np.random.choice(N, sN, replace=False))
-    # sub_idx = np.array([2,     3,     4 ,    5 ,    6  ,   7  ,   8   ,  9   , 10])-1
 
     sV = randint(minV, maxV+1)
     dim_idx = np.sort(np.random.choice(V, sV, replace=False))
-    # dim_idx = np.array([1,2,3,])-1
-    # sV = len(dim_idx)
 
     t1 = randint(0, T - minT+1)
     t2 = randint(t1 + minT, min(T, t1 + maxT)+1)
-    # t1=1
-    # t2=4
     sT = t2 - t1
     time_idx = np.arange(t1, t2)  
     sX = X[sub_idx][:, time_idx][:, :, dim_idx]
@@ -88,7 +84,6 @@ def GMM_MAP_EM(X, **kwargs):
             if i == 1:
                 # Initialization: random cluster assignment
                 cluster = np.random.choice(C, size=sN)
-                # cluster = np.array([1, 2,     1,     1 ,    1 ,    2 ,    2  ,   1   ,  1])-1
                 Q = np.eye(C)[cluster]
             else:
                 # Update cluster assignments
@@ -140,7 +135,6 @@ def GMM_MAP_EM(X, **kwargs):
             if i == 1:
                 # Random cluster assignment
                 cluster = np.random.randint(C, size=sN)
-                # cluster = np.array([1, 1, 1, 2, 2, 1, 2, 1, 2])-1
                 Q = np.eye(C)[cluster]
 
             else:
