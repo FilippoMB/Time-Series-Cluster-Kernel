@@ -1,6 +1,7 @@
 import requests
 import numpy as np
 from io import BytesIO
+import warnings
 
 class DataLoader:
     def __init__(self):
@@ -49,7 +50,11 @@ class DataLoader:
             if len(Xte.shape) < 3:
                 Xte = np.atleast_3d(Xte)
             Yte = data['Yte']
-            print(f"Loaded {alias} dataset.\nData shapes:\n Xtr: {Xtr.shape}\n Ytr: {Ytr.shape}\n Xte: {Xte.shape}\n Yte: {Yte.shape}")
+            n_classes_tr = len(np.unique(Ytr))
+            n_classes_te = len(np.unique(Yte))
+            if n_classes_tr != n_classes_te:
+                warnings.warn(f"Number of classes in training and test sets do not match for {alias} dataset.")
+            print(f"Loaded {alias} dataset.\nData shapes:\n Xtr: {Xtr.shape}\n Ytr: {Ytr.shape}\n Xte: {Xte.shape}\n Yte: {Yte.shape}\n Number of classes: {n_classes_tr} ")
 
             return (Xtr, Ytr, Xte, Yte)
         else:
