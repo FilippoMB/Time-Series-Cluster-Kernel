@@ -1,13 +1,15 @@
 [![arXiv](https://img.shields.io/badge/arXiv-1803.07870-b31b1b.svg)](https://arxiv.org/abs/1704.00794)
+[![slides](https://custom-icon-badges.demolab.com/badge/slides-pdf-blue.svg?logo=note&logoSource=feather&logoColor=white)](docs/TCK.pdf)
+[![Downloads](https://static.pepy.tech/badge/tck)](https://pepy.tech/project/tck)
 
-The Time Series Cluster Kernel (TCK) is a kernel similarity for multivariate time series with missing values. The kernel can be used to perform tasks such as classification, clustering, and dimensionality reduction.
+The Time Series Cluster Kernel (TCK) is a kernel similarity for multivariate time series with missing values. Once computed, the kernel can be used to perform tasks such as classification, clustering, and dimensionality reduction.
 
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/FilippoMB/Time-Series-Cluster-Kernel/master/docs/tck_scheme.png" style="width: 18cm">
 <br>
 
-TCK is based on an ensemble of Gaussian Mixture Models for time series that use informative Bayesian priors robust to missing values. The similarity between two time series is proportional to the number of times the two time series are assigned to the same mixtures.
+TCK is based on an ensemble of Gaussian Mixture Models (GMMs) for time series. The GMMs use time-varying means to handle time dependencies and informative Bayesian priors to handle missing values. The similarity between two time series is proportional to the number of times they are assigned to the same mixtures.
 
 
 # Installation
@@ -52,9 +54,9 @@ The following notebooks illustrate more advanced use-cases.
 
 - Perform time series dimensionality reduction, cluster analysis, and visualize the results: [view](https://nbviewer.org/github/FilippoMB/Time-Series-Cluster-Kernel/blob/main/notebooks/clustering.ipynb) or [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1hLF0SfiZZ13zhik0vAjWfvs__GJvV9c4?usp=sharing)
 
-## Running on Windows
+## &#x26A0; Running on Windows
 
-TCK uses multiprocessing. While using multiprocessing in Python on windows, it is necessary to protect the entry point of the program by using 
+TCK uses multiprocessing. While using multiprocessing in Python on Windows, it is necessary to protect the entry point of the program by using 
 
 ```python
 if __name__ == '__main__':

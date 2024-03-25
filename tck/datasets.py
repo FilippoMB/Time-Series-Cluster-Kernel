@@ -54,7 +54,7 @@ class DataLoader:
             n_classes_te = len(np.unique(Yte))
             if n_classes_tr != n_classes_te:
                 warnings.warn(f"Number of classes in training and test sets do not match for {alias} dataset.")
-            print(f"Loaded {alias} dataset.\nData shapes:\n Xtr: {Xtr.shape}\n Ytr: {Ytr.shape}\n Xte: {Xte.shape}\n Yte: {Yte.shape}\n Number of classes: {n_classes_tr} ")
+            print(f"Loaded {alias} dataset.\nNumber of classes: {n_classes_tr}\nData shapes:\n  Xtr: {Xtr.shape}\n  Ytr: {Ytr.shape}\n  Xte: {Xte.shape}\n  Yte: {Yte.shape}")
 
             return (Xtr, Ytr, Xte, Yte)
         else:
