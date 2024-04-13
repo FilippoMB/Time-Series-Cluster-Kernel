@@ -1,6 +1,6 @@
 from concurrent.futures import ProcessPoolExecutor
 import numpy as np
-import tqdm
+from tqdm.autonotebook import tqdm
 from sklearn.preprocessing import normalize
 from .GMM_MAP_EM import GMM_MAP_EM
 from .GMMposterior import GMMposterior
