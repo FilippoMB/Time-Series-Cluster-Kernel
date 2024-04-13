@@ -84,7 +84,7 @@ class TCK:
         with ProcessPoolExecutor() as executor:
             # Pass additional arguments required by process_gmm
             futures = [executor.submit(self.process_gmm, X, self.G, minN, minT, maxT, minV, maxV, I, missing, i) for i in range(self.G * (self.C - 1))]
-            for future in tqdm.tqdm(futures, desc='Fitting GMMs'):
+            for future in tqdm(futures, desc='Fitting GMMs'):
                 self.GMM.append(future.result())
       
         return self
@@ -111,7 +111,7 @@ class TCK:
 
         with ProcessPoolExecutor() as executor:
             futures = [executor.submit(self.update_matrix, i, mode, Xte) for i in range(self.G * (self.C - 1))]
-            for future in tqdm.tqdm(futures, desc=f"Computing TCK ({mode})"):
+            for future in tqdm(futures, desc=f"Computing TCK ({mode})"):
                 K += future.result()
         
         return K
