@@ -104,7 +104,13 @@ def GMM_MAP_EM(X, **kwargs):
                     s2[v, c] = (n0 * s2_0[v] + var1) / (n0 + var2)
                     A = invS_0[:, :, v] + np.diag(R[:, :, v].T @ Q[:, c] / s2[v, c])
                     b = invS_0[:, :, v] @ mu_0[:, v] + (R[:, :, v] * sX[:, :, v]).T @ Q[:, c] / s2[v, c]
-                    mu[:, v, c] = np.linalg.solve(A, b)
+                    try:
+                        mu[:, v, c] = np.linalg.solve(A, b)
+                    except np.linalg.LinAlgError:
+                        # Handle the singular matrix by adding a small constant epsilon to the diagonal
+                        epsilon = 1e-3  
+                        A_reg = A + epsilon * np.eye(A.shape[0])  
+                        mu[:, v, c] = np.linalg.solve(A_reg, b)  
 
         Q = GMMposterior(X, C, mu, s2, theta, dim_idx, time_idx, missing)
 
@@ -157,7 +163,13 @@ def GMM_MAP_EM(X, **kwargs):
                     s2[v, c] = (n0 * s2_0[v] + var1) / (n0 + var2)
                     A = invS_0[:, :, v] + (sumQ / s2[v, c]) * np.eye(sT)
                     b = np.dot(invS_0[:, :, v], mu_0[:, v]) + np.dot(sX[:, :, v].T, Q[:, c]) / s2[v, c]
-                    mu[:, v, c] = np.linalg.solve(A, b)
+                    try:
+                        mu[:, v, c] = np.linalg.solve(A, b)
+                    except np.linalg.LinAlgError:
+                        # Handle the singular matrix by adding a small constant epsilon to the diagonal
+                        epsilon = 1e-3
+                        A_reg = A + epsilon * np.eye(A.shape[0])
+                        mu[:, v, c] = np.linalg.solve(A_reg, b)
 
         Q = GMMposterior(X, C, mu, s2, theta, dim_idx, time_idx, missing)
 

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="tck",
-    version="0.4.4",
+    version="1.0.0",
     packages=find_packages(),
     python_requires='>=3.9',
     install_requires=[
